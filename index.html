@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TPACK Framework for Modern Education</title>
+<style>
+  /* Color palette */
+  :root {
+    --blue-green: #2a9d8f;
+    --blue-green-dark: #217a6a;
+    --white: #ffffff;
+    --gray-light: #f4f4f4;
+    --gray-dark: #333333;
+  }
+
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--white);
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+  a {
+    color: var(--blue-green);
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  /* Container */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 3rem;
+  }
+
+  /* Logo & Branding */
+  header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--white);
+    border-bottom: 2px solid var(--blue-green);
+  }
+  .logo {
+    width: 48px;
+    height: 48px;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+  }
+  .logo svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--blue-green);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--blue-green-dark);
+  }
+
+  /* Hero Section */
+  main > section.hero {
+    text-align: center;
+    padding: 2rem 1rem 3rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+    margin: 1.5rem 0 3rem;
+  }
+  main > section.hero h1 {
+    margin: 0 0 0.25rem;
+    font-size: 2.25rem;
+    color: var(--blue-green-dark);
+  }
+  main > section.hero p.subtitle {
+    margin: 0 0 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--blue-green);
+  }
+
+  /* About TPACK text */
+  section.about p {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Key Points Cards */
+  .key-points {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .card {
+    background: var(--white);
+    border: 2px solid var(--blue-green);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    flex: 1 1 220px;
+    max-width: 280px;
+    box-shadow: 0 2px 6px rgb(42 157 143 / 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover,
+  .card:focus-within {
+    box-shadow: 0 4px 12px rgb(42 157 143 / 0.3);
+  }
+  .card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: var(--blue-green-dark);
+    font-size: 1.25rem;
+  }
+  .card p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--gray-dark);
+  }
+
+  /* Embedded Video */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(42 157 143 / 0.2);
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 8px;
+  }
+
+  /* Image Slider */
+  .slider {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgb(42 157 143 / 0.2);
+  }
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .slide {
+    min-width: 100%;
+    user-select: none;
+    position: relative;
+  }
+  .slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .caption {
+    position: absolute;
+    bottom: 0;
+    background: rgba(42, 157, 143, 0.75);
+    color: var(--white);
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--blue-green);
+    color: var(--white);
+    padding: 1.5rem 1.5rem 2rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+  footer h2 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+  }
+  footer ol {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+  }
+  footer ol li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .key-points {
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      max-width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="TPACK Framework logo: open book with tablet behind it, blue-green on white" role="img">
+    <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" >
+      <!-- Tablet behind -->
+      <rect x="10" y="8" width="44" height="48" rx="4" ry="4" stroke-width="3" stroke="#2a9d8f" fill="#a7d7cc"/>
+      <!-- Open book front -->
+      <path d="M20 40 L32 32 L44 40 L44 52 L20 52 Z" fill="#2a9d8f" stroke="#2a9d8f" stroke-width="2"/>
+      <line x1="32" y1="32" x2="32" y2="52" stroke="#ffffff" stroke-width="2"/>
+      <line x1="20" y1="46" x2="44" y2="46" stroke="#ffffff" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <h1 class="site-title">TPACK Framework for Modern Education</h1>
+</header>
+
+<main class="container" role="main">
+  <section class="hero" aria-label="Hero section with site title and subtitle">
+    <h1>TPACK Framework for Modern Education</h1>
+    <p class="subtitle">Integrating Technology, Pedagogy, and Content for better teaching.</p>
+  </section>
+
+  <section class="about" aria-labelledby="about-tpack-title">
+    <h2 id="about-tpack-title">About TPACK</h2>
+    <p>
+      TPACK (Technological Pedagogical Content Knowledge) describes the blend of knowledge teachers need to teach effectively with technology. It combines Content Knowledge (CK)—mastery of the subject, Pedagogical Knowledge (PK)—how to teach and assess, and Technological Knowledge (TK)—how to choose and use digital tools. When CK, PK, and TK overlap, teachers can design engaging, equitable, and technology-enhanced learning that improves outcomes.
+    </p>
+  </section>
+
+  <section class="key-points" aria-label="Key points of TPACK framework">
+    <article class="card" tabindex="0" aria-labelledby="ck-title">
+      <h3 id="ck-title">CK</h3>
+      <p>Depth in the subject area</p>
+    </article>
+    <article class="card" tabindex="0" aria-labelledby="pk-title">
+      <h3 id="pk-title">PK</h3>
+      <p>Strategies, assessment, classroom management</p>
+    </article>
+    <article class="card" tabindex="0" aria-labelledby="tk-title">
+      <h3 id="tk-title">TK</h3>
+      <p>Selecting tools that align with objectives</p>
+    </article>
+  </section>
+
+  <section aria-label="Embedded video explaining TPACK framework" class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/FagVSQlZELY?autoplay=1&mute=1&controls=1&rel=0" 
+      title="What is the TPACK Framework?" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen 
+      muted 
+      ></iframe>
+  </section>
+
+  <section aria-label="Image slider gallery showing TPACK in action" class="slider" aria-live="polite">
+    <div class="slides" id="slides">
+      <figure class="slide">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1280&q=80" alt="Teacher using a smartboard" />
+        <figcaption class="caption">Pedagogy + Tech in action</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1280&q=80" alt="Students learning with tablets" />
+        <figcaption class="caption">Digital content exploration</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="https://images.unsplash.com/photo-1584697964403-1a3a3a3a3a3a?auto=format&fit=crop&w=1280&q=80" alt="Online group work / video class" />
+        <figcaption class="caption">Collaboration tools</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1280&q=80" alt="Teacher planning lessons with laptop" />
+        <figcaption class="caption">Aligning CK, PK, TK</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <h2>APA References</h2>
+  <ol>
+    <li>Koehler, M. J., &amp; Mishra, P. (2009). What is technological pedagogical content knowledge (TPACK)? Contemporary Issues in Technology and Teacher Education, 9(1), 60–70.</li>
+    <li>Mishra, P., &amp; Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. Teachers College Record, 108(6), 1017–1054.</li>
+    <li>Archambault, L., &amp; Crippen, K. (2009). Examining TPACK among K–12 online distance educators in the United States. Contemporary Issues in Technology and Teacher Education, 9(1), 71–88.</li>
+  </ol>
+</footer>
+
+<script>
+  // Image slider auto-rotate
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+  }
+
+  // Auto rotate every 5 seconds
+  setInterval(nextSlide, 5000);
+
+  // Initialize first slide
+  showSlide(currentIndex);
+</script>
+</body>
+</html>
