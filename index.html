@@ -1,37 +1,93 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TPACK Framework for Modern Education</title>
 <style>
-  /* Color palette */
+  /* Modern color palette */
   :root {
-    --blue-green: #2a9d8f;
-    --blue-green-dark: #217a6a;
-    --white: #ffffff;
-    --gray-light: #f4f4f4;
-    --gray-dark: #333333;
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --accent: #06b6d4;
+    --background: #f9fafb;
+    --surface: #ffffff;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
   }
 
   /* Reset and base */
   * {
     box-sizing: border-box;
   }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+  
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--white);
-    color: var(--gray-dark);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    color: var(--text-dark);
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* Animated background shapes */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(30deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05)),
+      linear-gradient(150deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05)),
+      linear-gradient(30deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05)),
+      linear-gradient(150deg, rgba(255,255,255,.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.05) 87.5%, rgba(255,255,255,.05));
+    background-size: 80px 140px;
+    background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    animation: slide 30s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+  }
+  
+  @keyframes slide {
+    0% { background-position: 0 0, 0 0, 40px 70px, 40px 70px; }
+    100% { background-position: 80px 140px, 80px 140px, 120px 210px, 120px 210px; }
   }
   a {
-    color: var(--blue-green);
+    color: var(--primary);
     text-decoration: none;
+    transition: color 0.3s ease;
   }
   a:hover,
   a:focus {
-    text-decoration: underline;
+    color: var(--primary-dark);
   }
 
   /* Container */
@@ -39,27 +95,32 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 1rem 1.5rem 3rem;
+    position: relative;
+    z-index: 1;
   }
 
   /* Logo & Branding */
   header {
     display: flex;
     align-items: center;
-    padding: 1rem 1.5rem;
-    background: var(--white);
-    border-bottom: 2px solid var(--blue-green);
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
   }
   .logo {
     width: 48px;
     height: 48px;
-    margin-right: 0.75rem;
+    margin-right: 1rem;
     flex-shrink: 0;
   }
   .logo svg {
     width: 100%;
     height: 100%;
     fill: none;
-    stroke: var(--blue-green);
+    stroke: var(--primary);
     stroke-width: 2.5;
     stroke-linejoin: round;
     stroke-linecap: round;
@@ -67,35 +128,93 @@
   .site-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--blue-green-dark);
+    color: var(--text-dark);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
   }
 
   /* Hero Section */
   main > section.hero {
     text-align: center;
-    padding: 2rem 1rem 3rem;
-    background: var(--gray-light);
-    border-radius: 8px;
-    margin: 1.5rem 0 3rem;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    margin: 2rem 0 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
   }
+  
+  main > section.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    animation: heroFloat 15s ease-in-out infinite;
+  }
+  
+  @keyframes heroFloat {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-30px, -30px); }
+  }
+  
   main > section.hero h1 {
-    margin: 0 0 0.25rem;
-    font-size: 2.25rem;
-    color: var(--blue-green-dark);
+    margin: 0 0 0.5rem;
+    font-size: 2.75rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -1px;
   }
   main > section.hero p.subtitle {
-    margin: 0 0 1.5rem;
-    font-size: 1.125rem;
+    margin: 0;
+    font-size: 1.25rem;
     font-weight: 500;
-    color: var(--blue-green);
+    color: #4b5563;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
   }
 
   /* About TPACK text */
+  section.about {
+    margin-bottom: 3rem;
+  }
+  section.about h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
+  }
   section.about p {
     max-width: 720px;
-    margin: 0 auto 2rem;
-    font-size: 1rem;
-    line-height: 1.5;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: #374151;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
   }
 
   /* Key Points Cards */
@@ -103,33 +222,44 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
   }
   .card {
-    background: var(--white);
-    border: 2px solid var(--blue-green);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
     flex: 1 1 220px;
     max-width: 280px;
-    box-shadow: 0 2px 6px rgb(42 157 143 / 0.15);
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
   .card:hover,
   .card:focus-within {
-    box-shadow: 0 4px 12px rgb(42 157 143 / 0.3);
+    box-shadow: 0 16px 32px rgba(79, 70, 229, 0.2);
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 1);
   }
   .card h3 {
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    color: var(--blue-green-dark);
-    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
   }
   .card p {
     margin: 0;
-    font-size: 1rem;
-    color: var(--gray-dark);
+    font-size: 1.0625rem;
+    color: #374151;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
   }
 
   /* Embedded Video */
@@ -139,9 +269,9 @@
     height: 0;
     overflow: hidden;
     max-width: 720px;
-    margin: 0 auto 3rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(42 157 143 / 0.2);
+    margin: 0 auto 4rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
   .video-container iframe {
     position: absolute;
@@ -149,17 +279,17 @@
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: 8px;
+    border-radius: 12px;
   }
 
   /* Image Slider */
   .slider {
     max-width: 720px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 4rem;
     position: relative;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgb(42 157 143 / 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
   .slides {
     display: flex;
@@ -178,42 +308,63 @@
   .caption {
     position: absolute;
     bottom: 0;
-    background: rgba(42, 157, 143, 0.75);
-    color: var(--white);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6));
+    color: #ffffff;
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.125rem;
     font-weight: 600;
-    text-align: center;
+    text-align: left;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
   }
 
   /* Footer */
   footer {
-    background: var(--blue-green);
-    color: var(--white);
-    padding: 1.5rem 1.5rem 2rem;
-    font-size: 0.875rem;
-    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--text-dark);
+    padding: 2.5rem 2rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
   }
   footer h2 {
     margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.625rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--text-dark);
     text-align: center;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
   }
   footer ol {
     max-width: 720px;
     margin: 0 auto;
-    padding-left: 1.25rem;
+    padding-left: 1.5rem;
+    color: #374151;
   }
   footer ol li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+    line-height: 1.8;
+    font-family: 'Inter', sans-serif;
   }
 
   /* Responsive */
   @media (max-width: 600px) {
+    main > section.hero h1 {
+      font-size: 2rem;
+    }
+    main > section.hero p.subtitle {
+      font-size: 1.0625rem;
+    }
     .key-points {
       flex-direction: column;
       align-items: center;
@@ -226,12 +377,12 @@
 </head>
 <body>
 <header>
-  <div class="logo" aria-label="TPACK Framework logo: open book with tablet behind it, blue-green on white" role="img">
+  <div class="logo" aria-label="TPACK Framework logo: open book with tablet behind it" role="img">
     <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" >
       <!-- Tablet behind -->
-      <rect x="10" y="8" width="44" height="48" rx="4" ry="4" stroke-width="3" stroke="#2a9d8f" fill="#a7d7cc"/>
+      <rect x="10" y="8" width="44" height="48" rx="4" ry="4" stroke-width="3" stroke="#4f46e5" fill="#e0e7ff"/>
       <!-- Open book front -->
-      <path d="M20 40 L32 32 L44 40 L44 52 L20 52 Z" fill="#2a9d8f" stroke="#2a9d8f" stroke-width="2"/>
+      <path d="M20 40 L32 32 L44 40 L44 52 L20 52 Z" fill="#4f46e5" stroke="#4f46e5" stroke-width="2"/>
       <line x1="32" y1="32" x2="32" y2="52" stroke="#ffffff" stroke-width="2"/>
       <line x1="20" y1="46" x2="44" y2="46" stroke="#ffffff" stroke-width="1.5"/>
     </svg>
@@ -330,4 +481,5 @@
   showSlide(currentIndex);
 </script>
 </body>
+</html>
 </html>
